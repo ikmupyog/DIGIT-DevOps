@@ -23,7 +23,7 @@ oauth:
 
 jobBuilder:
   repos: >-
-    'git@github.com:egovernments/core-services.git','git@github.com:egovernments/business-services.git'
+    'git@github.com:ikmupyog/DIGIT-OSS.git'
 
 master:
   httpsKeyStore:
@@ -163,11 +163,6 @@ master:
         secretKeyRef:
           name: jenkins-credentials
           key: gitReadSshPrivateKey
-    - name: SLACK_TOKEN
-      valueFrom:
-        secretKeyRef:
-          name: jenkins-credentials
-          key: slackToken   
   usePodSecurityContext: true
   # Set runAsUser to 1000 to let Jenkins run as non-root user 'jenkins' which exists in 'jenkins/jenkins' docker image.
   # When setting runAsUser to a different value than 0 also set fsGroup to the same value:
@@ -416,7 +411,7 @@ master:
                   scm:
                     git:
                       credentialsId: "git_read"
-                      remote: "git@github.com:egovernments/CIOps.git"
+                      remote: "git@github.com:ikmupyog/CIOps.git"
                       traits:
                       - "gitBranchDiscovery"
       system-message: | 
@@ -481,7 +476,7 @@ master:
                   cps {
                       script("""library 'ci-libs'
               
-              deployer(repo:'git@github.com:egovernments/DIGIT-DevOps.git', branch: 'master', helmDir: 'deploy-as-code/helm', environment: '{{ $job.name }}')""")
+              deployer(repo:'git@github.com:ikmupyog/DIGIT-DevOps.git', branch: 'release', helmDir: 'config-as-code/helm', environment: '{{ $job.name }}')""")
                       sandbox() 
                     }
                 }
@@ -602,7 +597,7 @@ master:
         # Don't use string here, use only integer value!
         servicePort: 8080
     # For Kubernetes v1.14+, use 'networking.k8s.io/v1beta1'
-    apiVersion: "networking.k8s.io/v1beta1"
+    apiVersion: "networking.k8s.io/v1"
     labels: {}
     annotations: 
       kubernetes.io/ingress.class: "nginx"

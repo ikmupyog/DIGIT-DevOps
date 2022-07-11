@@ -3,7 +3,7 @@
 #
 
 variable "cluster_name" {
-  default = "my-first-eks"
+  default = "ikm-first-eks"
 }
 
 variable "vpc_cidr_block" {
@@ -40,11 +40,11 @@ variable "ssh_key_name" {
 }
 
 variable "bucket_name" {
-  default = "try-workshop"
+  default = "ikm-try-workshop"
 }
 
 variable "iam_keybase_user" {
- default = "keybase:egovterraform"
+ default = "keybase:vmadhummal"
 }
 
 variable "db_password" {}

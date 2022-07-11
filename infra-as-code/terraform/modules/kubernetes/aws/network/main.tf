@@ -170,12 +170,6 @@ resource "aws_security_group" "master_nodes_sg" {
   description = "Master nodes security group"
   vpc_id      = "${aws_vpc.vpc.id}"
 
-  tags = "${
-    map(
-      "Name", "masters-${var.cluster_name}",
-      "kubernetes.io/cluster/${var.cluster_name}", "shared",
-      "KubernetesCluster", "${var.cluster_name}"
-    )
   }"
 }
 
