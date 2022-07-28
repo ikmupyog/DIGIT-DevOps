@@ -157,12 +157,7 @@ resource "aws_security_group" "worker_nodes_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = "${
-    map(
-      "kubernetes.io/cluster/${var.cluster_name}", "owned",
-      "KubernetesCluster", "${var.cluster_name}"
-    )
-  }"
+  
 }
 
 resource "aws_security_group" "master_nodes_sg" {
@@ -170,6 +165,12 @@ resource "aws_security_group" "master_nodes_sg" {
   description = "Master nodes security group"
   vpc_id      = "${aws_vpc.vpc.id}"
 
+  tags = "${
+    map(
+      "Name", "masters-${var.cluster_name}",
+      "kubernetes.io/cluster/${var.cluster_name}", "shared",
+      "KubernetesCluster", "${var.cluster_name}"
+    )
   }"
 }
 
