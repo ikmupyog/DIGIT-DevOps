@@ -17,7 +17,7 @@ cluster-configs:
                 db-url: jdbc:postgresql://ikm-first-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com:5432/ikmeksdb
                 domain: ksmart-qa.lsgkerala.gov.in    
                 egov-services-fqdn-name: https://ksmart-qa.lsgkerala.gov.in
-                egov-state-level-tenant-id: pb
+                egov-state-level-tenant-id: kl
                 s3-assets-bucket: ikm-uat-assets
                 
                  ## Do not Change
@@ -208,7 +208,7 @@ egov-searcher:
       branch: "UAT" ### Branch need to be changed as per your env
 
 egov-custom-consumer:
-  erp-host: "https://mohali-qa.egovernments.org/"
+  erp-host: "https://cochin-qa.egovernments.org/"
 
 digit-ui:
   custom-js-injection: |
