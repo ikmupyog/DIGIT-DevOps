@@ -149,7 +149,7 @@ chatbot:
   kafka-producer-linger-ms: 5
 
   contact-card-whatsapp-number: "+918744960111" 
-  contact-card-whatsapp-name: "mSeva Punjab"
+  contact-card-whatsapp-name: "mSeva Kerala"
   valuefirst-whatsapp-number: "918744960111"
   valuefirst-notification-assigned-templateid: "194781"
   valuefirst-notification-resolved-templateid: "194783"
@@ -269,12 +269,12 @@ zuul:
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 collection-receipt-voucher-consumer:
-  jalandhar-erp-host: "https://jalandhar-qa.egovernments.org/"
-  mohali-erp-host: "https://mohali-qa.egovernments.org/"
-  nayagaon-erp-host: "https://nayagaon-qa.egovernments.org/"
-  amritsar-erp-host: "https://amritsar-qa.egovernments.org/"
-  kharar-erp-host: "https://kharar-qa.egovernments.org/"
-  zirakpur-erp-host: "https://zirakpur-qa.egovernments.org/"
+  jalandhar-erp-host: "https://thiruvananthapuram-qa.egovernments.org/"
+  mohali-erp-host: "https://cochin-qa.egovernments.org/"
+  nayagaon-erp-host: "https://kannur-qa.egovernments.org/"
+  amritsar-erp-host: "https://kozhikode-qa.egovernments.org/"
+  kharar-erp-host: "https://kollam-qa.egovernments.org/"
+  zirakpur-erp-host: "https://thrissur-qa.egovernments.org/"
 
 finance-collections-voucher-consumer:
   erp-env-name: "qa"
