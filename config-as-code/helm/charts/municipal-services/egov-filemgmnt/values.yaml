@@ -1,6 +1,6 @@
 # Common Labels
 labels:
-  app: "filemgmnt-services"
+  app: "egov-filemgmnt"
   group: "rainmaker"
 
 # Ingress Configs
