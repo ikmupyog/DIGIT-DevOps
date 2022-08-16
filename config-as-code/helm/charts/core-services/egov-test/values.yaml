@@ -14,5 +14,5 @@ image:
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/hello/health"
-  readinessProbePath: "/hello/health"
+  livenessProbePath: "/hello/actuator/health"
+  readinessProbePath: "/hello/actuator/health"
