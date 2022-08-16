@@ -1,0 +1,26 @@
+# Common Labels
+labels:
+  app: "filemgmnt-services"
+  group: "rainmaker"
+
+# Ingress Configs
+ingress:
+  enabled: true
+  context: "filemgmnt-services"
+
+# Init Containers Configs
+# initContainers:
+#   dbMigration:
+#     enabled: true
+#     schemaTable: "filemgmnt_services_schema"
+#     image:
+#       repository: "filemgmnt-services-db"
+
+# Container Configs
+image:
+  repository: "filemgmnt-services"
+replicas: "1"
+healthChecks:
+  enabled: false
+  livenessProbePath: "/filemgmnt-services/health"
+  readinessProbePath: "/filemgmnt-services/health"
