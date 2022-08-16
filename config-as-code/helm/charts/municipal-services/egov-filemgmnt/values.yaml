@@ -6,7 +6,7 @@ labels:
 # Ingress Configs
 ingress:
   enabled: true
-  context: "filemgmnt-services"
+  context: "egov-filemgmnt-services"
 
 # Init Containers Configs
 # initContainers:
@@ -22,5 +22,5 @@ image:
 replicas: "1"
 healthChecks:
   enabled: false
-  livenessProbePath: "/filemgmnt-services/health"
-  readinessProbePath: "/filemgmnt-services/health"
+  livenessProbePath: "/egov-filemgmnt-services/health"
+  readinessProbePath: "/egov-filemgmnt-services/health"
