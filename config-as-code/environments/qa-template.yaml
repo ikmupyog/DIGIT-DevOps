@@ -15,10 +15,10 @@ cluster-configs:
                 db-host: ikm-first-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com
                 db-name: ikmeksdb
                 db-url: jdbc:postgresql://ikm-first-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com:5432/ikmeksdb
-                domain: ksmart-dev.lsgkerala.gov.in    
-                egov-services-fqdn-name: https://ksmart-dev.lsgkerala.gov.in
-                egov-state-level-tenant-id: pb
-                s3-assets-bucket: ikm-assets-bucket
+                domain: ksmart-qa.lsgkerala.gov.in    
+                egov-services-fqdn-name: https://ksmart-qa.lsgkerala.gov.in
+                egov-state-level-tenant-id: kl
+                s3-assets-bucket: ikm-uat-assets
                 
                  ## Do not Change
                 es-host: "elasticsearch-data-v1.es-cluster"
@@ -126,7 +126,7 @@ egov-idgen:
 
 egov-notification-sms:
   sms-provider-url: "https://msdgweb.mgov.gov.in/esms/sendsmsrequest"
-  sms.provider.class: "Generic"
+  sms.provider.class: "Console"
   sms.provider.contentType:  "application/x-www-form-urlencoded"
   sms-config-map: "{'User':'$username', 'passwd': '$password', 'sid':'$senderid', 'mobilenumber':'$mobileno', 'message':'$message', 'mtype':'N', 'DR':'N', 'smsservicetype':'singlemsg'}"
   sms-gateway-to-use: "sms provider name" ## Add sms provider name
@@ -149,7 +149,7 @@ chatbot:
   kafka-producer-linger-ms: 5
 
   contact-card-whatsapp-number: "+918744960111" 
-  contact-card-whatsapp-name: "mSeva Punjab"
+  contact-card-whatsapp-name: "mSeva Kerala"
   valuefirst-whatsapp-number: "918744960111"
   valuefirst-notification-assigned-templateid: "194781"
   valuefirst-notification-resolved-templateid: "194783"
@@ -181,7 +181,7 @@ egov-indexer:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs" ### Change this to Your Config Repo
-      branch: "DEV"
+      branch: "UAT"
   egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/billingservices-indexer.yml,file:///work-dir/configs/egov-indexer/collection-indexer.yml,file:///work-dir/configs/egov-indexer/egov-telemetry-indexer.yml,file:///work-dir/configs/egov-indexer/egov-uploader-indexer.yml,file:///work-dir/configs/egov-indexer/error-queue.yml,file:///work-dir/configs/egov-indexer/finance-rolloutadotpion-indexer.yml,file:///work-dir/configs/egov-indexer/payment-indexer.yml,file:///work-dir/configs/egov-indexer/rainmaker-pgr-indexer.yml,file:///work-dir/configs/egov-indexer/rainmaker-pt-indexer.yml,file:///work-dir/configs/egov-indexer/rainmaker-tl-indexer.yml,file:///work-dir/configs/egov-indexer/chatbot-telemetry.yaml"
 
 egov-persister:
@@ -192,23 +192,23 @@ egov-persister:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs" ### Change this to Your Config Repo
-      branch: "DEV" ### Branch need to be changed as per your env
+      branch: "UAT" ### Branch need to be changed as per your env
 
 egov-data-uploader:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs" ### Change this to Your Config Repo
-      branch: "DEV" ### Branch need to be changed as per your env
+      branch: "UAT" ### Branch need to be changed as per your env
 
 egov-searcher:
   search-yaml-path: "file:///work-dir/configs/egov-searcher/rainmaker-pgr-v2.yml,file:///work-dir/configs/egov-searcher/weekly-impact-emailer-searcher.yml,file:///work-dir/configs/egov-searcher/PTDemandBasedSearcher.yml,file:///work-dir/configs/egov-searcher/bill-genie.yml,file:///work-dir/configs/egov-searcher/rainmaker-tl.yml,file:///work-dir/configs/egov-searcher/localitySearcher.yml"
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"  ### Change this to Your Config Repo
-      branch: "DEV" ### Branch need to be changed as per your env
+      branch: "UAT" ### Branch need to be changed as per your env
 
 egov-custom-consumer:
-  erp-host: "https://mohali-qa.egovernments.org/"
+  erp-host: "https://cochin-qa.egovernments.org/"
 
 digit-ui:
   custom-js-injection: |
@@ -269,12 +269,12 @@ zuul:
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 collection-receipt-voucher-consumer:
-  jalandhar-erp-host: "https://jalandhar-qa.egovernments.org/"
-  mohali-erp-host: "https://mohali-qa.egovernments.org/"
-  nayagaon-erp-host: "https://nayagaon-qa.egovernments.org/"
-  amritsar-erp-host: "https://amritsar-qa.egovernments.org/"
-  kharar-erp-host: "https://kharar-qa.egovernments.org/"
-  zirakpur-erp-host: "https://zirakpur-qa.egovernments.org/"
+  jalandhar-erp-host: "https://thiruvananthapuram-qa.egovernments.org/"
+  mohali-erp-host: "https://cochin-qa.egovernments.org/"
+  nayagaon-erp-host: "https://kannur-qa.egovernments.org/"
+  amritsar-erp-host: "https://kozhikode-qa.egovernments.org/"
+  kharar-erp-host: "https://kollam-qa.egovernments.org/"
+  zirakpur-erp-host: "https://thrissur-qa.egovernments.org/"
 
 finance-collections-voucher-consumer:
   erp-env-name: "qa"
@@ -285,7 +285,7 @@ employee:
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
       <script src=https://s3.ap-south-1.amazonaws.com/egov-telemetry-data/ulb-overrides.js type=text/javascript></script>
-      <script src=https://raw.githack.com/egovernments/egov-mdms-data/CURFEW_E_PASS/data/in/logo/globalConfigs.js type=text/javascript></script>
+      <script src=https://s3.ap-south-1.amazonaws.com/egov-uat-assets/globalConfigs.js type=text/javascript></script>
       ';"
 
 dashboard-analytics:
@@ -293,14 +293,14 @@ dashboard-analytics:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"
-      branch: "DEV"
+      branch: "UAT"
 
 dashboard-ingest:
   config-schema-paths: "file:///work-dir/configs/egov-dss-dashboards/dashboard-ingest/*.json"
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"
-      branch: "DEV"
+      branch: "UAT"
 
 
 citizen:
@@ -308,7 +308,7 @@ citizen:
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
       <script src=https://s3.ap-south-1.amazonaws.com/egov-telemetry-data/ulb-overrides.js type=text/javascript></script>
-      <script src=https://raw.githack.com/egovernments/egov-mdms-data/CURFEW_E_PASS/data/in/logo/globalConfigs.js type=text/javascript></script>
+      <script src=https://s3.ap-south-1.amazonaws.com/ikm-uat-assets/globalConfigs.js type=text/javascript></script>
       ';"
 
 # reportinfra >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -319,7 +319,7 @@ report:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"
-      branch: "DEV"
+      branch: "UAT"
   report-locationsfile-path: "file:///work-dir/configs/reports/reportFileLocationsv1.txt"
 
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -328,7 +328,7 @@ pdf-service:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"  ### Change this to Your Config Repo
-      branch: "DEV"   ### Branch need to be changed as per your env
+      branch: "UAT"   ### Branch need to be changed as per your env
   data-config-urls: "file:///work-dir/configs/pdf-service/data-config/tradelicense-receipt.json,file:///work-dir/configs/pdf-service/data-config/property-receipt.json,file:///work-dir/configs/pdf-service/data-config/property-bill.json,file:///work-dir/configs/pdf-service/data-config/tradelicense-bill.json,file:///work-dir/configs/pdf-service/data-config/firenoc-receipt.json,file:///work-dir/configs/pdf-service/data-config/pt-receipt.json,file:///work-dir/configs/pdf-service/data-config/tl-receipt.json,file:///work-dir/configs/pdf-service/data-config/consolidatedbill.json,file:///work-dir/configs/pdf-service/data-config/consolidatedreceipt.json,file:///work-dir/configs/pdf-service/data-config/tlapplication.json,file:///work-dir/configs/pdf-service/data-config/passvehicle-certificate.json,file:///work-dir/configs/pdf-service/data-config/ws-consolidatedacknowlegment.json,file:///work-dir/configs/pdf-service/data-config/ws-consolidatedsewerageconnection.json,file:///work-dir/configs/pdf-service/data-config/buildingpermit.json,file:///work-dir/configs/pdf-service/data-config/ptmutationcertificate.json,file:///work-dir/configs/pdf-service/data-config/tlrenewalcertificate.json,file:///work-dir/configs/pdf-service/data-config/bpa-revocation.json,file:///work-dir/configs/pdf-service/data-config/buildingpermit-low.json,file:///work-dir/configs/pdf-service/data-config/misc-receipt.json,file:///work-dir/configs/pdf-service/data-config/ws-applicationwater.json,file:///work-dir/configs/pdf-service/data-config/ws-sanctionletter.json,file:///work-dir/configs/pdf-service/data-config/ws-estimationnotice.json,file:///work-dir/configs/pdf-service/data-config/ws-applicationsewerage.json,file:///work-dir/configs/pdf-service/data-config/tlcertificate.json"
   format-config-urls: "file:///work-dir/configs/pdf-service/format-config/tradelicense-receipt.json,file:///work-dir/configs/pdf-service/format-config/property-receipt.json,file:///work-dir/configs/pdf-service/format-config/property-bill.json,file:///work-dir/configs/pdf-service/format-config/tradelicense-bill.json,file:///work-dir/configs/pdf-service/format-config/firenoc-receipt.json,file:///work-dir/configs/pdf-service/format-config/pt-receipt.json,file:///work-dir/configs/pdf-service/format-config/tl-receipt.json,file:///work-dir/configs/pdf-service/format-config/consolidatedbill.json,file:///work-dir/configs/pdf-service/format-config/consolidatedreceipt.json,file:///work-dir/configs/pdf-service/format-config/tlapplication.json,file:///work-dir/configs/pdf-service/format-config/passvehicle-certificate.json,file:///work-dir/configs/pdf-service/format-config/ws-consolidatedacknowlegment.json,file:///work-dir/configs/pdf-service/format-config/ws-consolidatedsewerageconnection.json,file:///work-dir/configs/pdf-service/format-config/buildingpermit.json,file:///work-dir/configs/pdf-service/format-config/ptmutationcertificate.json,file:///work-dir/configs/pdf-service/format-config/tlrenewalcertificate.json,file:///work-dir/configs/pdf-service/format-config/bpa-revocation.json,file:///work-dir/configs/pdf-service/format-config/buildingpermit-low.json,file:///work-dir/configs/pdf-service/format-config/misc-receipt.json,file:///work-dir/configs/pdf-service/format-config/ws-applicationwater.json,file:///work-dir/configs/pdf-service/format-config/ws-sanctionletter.json,file:///work-dir/configs/pdf-service/format-config/ws-estimationnotice.json,file:///work-dir/configs/pdf-service/format-config/ws-applicationsewerage.json,file:///work-dir/configs/pdf-service/format-config/tlcertificate.json"
 
