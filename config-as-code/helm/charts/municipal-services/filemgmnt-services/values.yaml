@@ -18,7 +18,7 @@ ingress:
 
 # Container Configs
 image:
-  repository: "filemgmnt-services"
+  repository: "egov-filemgmnt"
 replicas: "1"
 healthChecks:
   enabled: false
