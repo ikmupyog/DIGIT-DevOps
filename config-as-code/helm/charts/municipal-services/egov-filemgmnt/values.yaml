@@ -24,3 +24,8 @@ healthChecks:
   enabled: false
   livenessProbePath: "/egov-filemgmnt-services/health"
   readinessProbePath: "/egov-filemgmnt-services/health"
+
+# Additional Container Envs
+env: |
+  - name: SERVER_PORT
+    value: "8080"
