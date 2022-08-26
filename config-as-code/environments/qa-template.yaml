@@ -12,13 +12,13 @@ cluster-configs:
     configmaps:
         egov-config:
             data:
-                db-host: ikm-first-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com
-                db-name: ikmeksdb
-                db-url: jdbc:postgresql://ikm-first-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com:5432/ikmeksdb
-                domain: ksmart-dev.lsgkerala.gov.in    
-                egov-services-fqdn-name: https://ksmart-dev.lsgkerala.gov.in
-                egov-state-level-tenant-id: pb
-                s3-assets-bucket: ikm-assets-bucket
+                db-host: ikm-firstqa-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com
+                db-name: ikmeksqadb
+                db-url: jdbc:postgresql://ikm-firstqa-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com:5432/ikmeksqadb
+                domain: ksmart-qa.lsgkerala.gov.in    
+                egov-services-fqdn-name: https://ksmart-qa.lsgkerala.gov.in
+                egov-state-level-tenant-id: kl
+                s3-assets-bucket: ikm-assets-bucket-qa
                 
                  ## Do not Change
                 es-host: "elasticsearch-data-v1.es-cluster"
@@ -31,7 +31,7 @@ cluster-configs:
                 serializers-timezone-in-ist: "true"
                 server-tomcat-max-connections: "500"
                 server-tomcat-max-threads: "10"
-                sms-enabled: "true"
+                sms-enabled: "false"
                 spring-datasource-tomcat-initialSize: "1"
                 spring-datasource-tomcat-max-active: "2"
                 spring-jpa-show-sql: "true"
@@ -98,7 +98,7 @@ egov-filestore:
   aws.s3.url: "https://s3.amazonaws.com"
   is-s3-enabled: "true"
   minio-enabled: false
-  fixed-bucketname: egov-rainmaker # Only for Dev & QA
+  fixed-bucketname: egov-rainmaker-qa # Only for Dev & QA
   allowed-file-formats-map: "{jpg:{'image/jpg','image/jpeg'},jpeg:{'image/jpeg','image/jpg'},png:{'image/png'},pdf:{'application/pdf'},odt:{'application/vnd.oasis.opendocument.text'},ods:{'application/vnd.oasis.opendocument.spreadsheet'},docx:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},doc:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},dxf:{'text/plain','application/dxf','application/octet-stream','image/vnd.dxf','image/vnd.dxf; format=ascii','image/vnd.dxf; format=binary','image/vnd.dxb'},csv:{'text/plain'},txt:{'text/plain'},xlsx:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel'},xls:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel'}}"
   allowed-file-formats: "jpg,jpeg,png,doc,docx,pdf,odt,ods,text,dxf,xls,xlsx"
   filestore-url-validity: 3600
@@ -170,7 +170,7 @@ egov-mdms-service:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/egov-mdms-data" ### Change this to Your MDMS Repo
-      branch: "DEV"  ### Branch need to be changed as per your env
+      branch: "UAT"  ### Branch need to be changed as per your env
   mdms-folder: "egov-mdms-data" 
   masters-config-url: "file:///work-dir/egov-mdms-data/master-config.json"
   java-args: -Dspring.profiles.active=monitoring
@@ -181,7 +181,7 @@ egov-indexer:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs" ### Change this to Your Config Repo
-      branch: "DEV"
+      branch: "UAT"
   egov-indexer-yaml-repo-path: "file:///work-dir/configs/egov-indexer/billingservices-indexer.yml,file:///work-dir/configs/egov-indexer/collection-indexer.yml,file:///work-dir/configs/egov-indexer/egov-telemetry-indexer.yml,file:///work-dir/configs/egov-indexer/egov-uploader-indexer.yml,file:///work-dir/configs/egov-indexer/error-queue.yml,file:///work-dir/configs/egov-indexer/finance-rolloutadotpion-indexer.yml,file:///work-dir/configs/egov-indexer/payment-indexer.yml,file:///work-dir/configs/egov-indexer/rainmaker-pgr-indexer.yml,file:///work-dir/configs/egov-indexer/rainmaker-pt-indexer.yml,file:///work-dir/configs/egov-indexer/rainmaker-tl-indexer.yml,file:///work-dir/configs/egov-indexer/chatbot-telemetry.yaml"
 
 egov-persister:
@@ -192,20 +192,20 @@ egov-persister:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs" ### Change this to Your Config Repo
-      branch: "DEV" ### Branch need to be changed as per your env
+      branch: "UAT" ### Branch need to be changed as per your env
 
 egov-data-uploader:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs" ### Change this to Your Config Repo
-      branch: "DEV" ### Branch need to be changed as per your env
+      branch: "UAT" ### Branch need to be changed as per your env
 
 egov-searcher:
   search-yaml-path: "file:///work-dir/configs/egov-searcher/rainmaker-pgr-v2.yml,file:///work-dir/configs/egov-searcher/weekly-impact-emailer-searcher.yml,file:///work-dir/configs/egov-searcher/PTDemandBasedSearcher.yml,file:///work-dir/configs/egov-searcher/bill-genie.yml,file:///work-dir/configs/egov-searcher/rainmaker-tl.yml,file:///work-dir/configs/egov-searcher/localitySearcher.yml"
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"  ### Change this to Your Config Repo
-      branch: "DEV" ### Branch need to be changed as per your env
+      branch: "UAT" ### Branch need to be changed as per your env
 
 egov-custom-consumer:
   erp-host: "https://mohali-qa.egovernments.org/"
@@ -214,7 +214,7 @@ digit-ui:
   custom-js-injection: |
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
-      <script src=https://s3.ap-south-1.amazonaws.com/egov-uat-assets/globalConfigs.js type=text/javascript></script>
+      <script src=https://ikm-uat-assets.s3.ap-south-1.amazonaws.com/globalConfigs.js type=text/javascript></script>
       ';"
 
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -222,7 +222,7 @@ digit-ui:
 # financials >>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 egf-master:
-  db-url: jdbc:postgresql://ikm-first-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com:5432/ikmeksdb ## Add db-url
+  db-url: jdbc:postgresql://ikm-firstqa-eks-db.c865b3gqkoui.ap-south-1.rds.amazonaws.com:5432/ikmeksqadb
   memory_limits: 512Mi
   heap: "-Xmx256m -Xms256m"
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -285,7 +285,7 @@ employee:
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
       <script src=https://s3.ap-south-1.amazonaws.com/egov-telemetry-data/ulb-overrides.js type=text/javascript></script>
-      <script src=https://raw.githack.com/egovernments/egov-mdms-data/CURFEW_E_PASS/data/in/logo/globalConfigs.js type=text/javascript></script>
+      <script src=https://ikm-uat-assets.s3.ap-south-1.amazonaws.com/globalConfigs.js type=text/javascript></script>
       ';"
 
 dashboard-analytics:
@@ -293,14 +293,14 @@ dashboard-analytics:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"
-      branch: "DEV"
+      branch: "UAT"
 
 dashboard-ingest:
   config-schema-paths: "file:///work-dir/configs/egov-dss-dashboards/dashboard-ingest/*.json"
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"
-      branch: "DEV"
+      branch: "UAT"
 
 
 citizen:
@@ -308,7 +308,7 @@ citizen:
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
       <script src=https://s3.ap-south-1.amazonaws.com/egov-telemetry-data/ulb-overrides.js type=text/javascript></script>
-      <script src=https://raw.githack.com/egovernments/egov-mdms-data/CURFEW_E_PASS/data/in/logo/globalConfigs.js type=text/javascript></script>
+      <script src=https://ikm-uat-assets.s3.ap-south-1.amazonaws.com/globalConfigs.js type=text/javascript></script>
       ';"
 
 # reportinfra >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -319,7 +319,7 @@ report:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"
-      branch: "DEV"
+      branch: "UAT"
   report-locationsfile-path: "file:///work-dir/configs/reports/reportFileLocationsv1.txt"
 
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -328,7 +328,7 @@ pdf-service:
   initContainers:
     gitSync:
       repo: "git@github.com:ikmupyog/configs"  ### Change this to Your Config Repo
-      branch: "DEV"   ### Branch need to be changed as per your env
+      branch: "UAT"   ### Branch need to be changed as per your env
   data-config-urls: "file:///work-dir/configs/pdf-service/data-config/tradelicense-receipt.json,file:///work-dir/configs/pdf-service/data-config/property-receipt.json,file:///work-dir/configs/pdf-service/data-config/property-bill.json,file:///work-dir/configs/pdf-service/data-config/tradelicense-bill.json,file:///work-dir/configs/pdf-service/data-config/firenoc-receipt.json,file:///work-dir/configs/pdf-service/data-config/pt-receipt.json,file:///work-dir/configs/pdf-service/data-config/tl-receipt.json,file:///work-dir/configs/pdf-service/data-config/consolidatedbill.json,file:///work-dir/configs/pdf-service/data-config/consolidatedreceipt.json,file:///work-dir/configs/pdf-service/data-config/tlapplication.json,file:///work-dir/configs/pdf-service/data-config/passvehicle-certificate.json,file:///work-dir/configs/pdf-service/data-config/ws-consolidatedacknowlegment.json,file:///work-dir/configs/pdf-service/data-config/ws-consolidatedsewerageconnection.json,file:///work-dir/configs/pdf-service/data-config/buildingpermit.json,file:///work-dir/configs/pdf-service/data-config/ptmutationcertificate.json,file:///work-dir/configs/pdf-service/data-config/tlrenewalcertificate.json,file:///work-dir/configs/pdf-service/data-config/bpa-revocation.json,file:///work-dir/configs/pdf-service/data-config/buildingpermit-low.json,file:///work-dir/configs/pdf-service/data-config/misc-receipt.json,file:///work-dir/configs/pdf-service/data-config/ws-applicationwater.json,file:///work-dir/configs/pdf-service/data-config/ws-sanctionletter.json,file:///work-dir/configs/pdf-service/data-config/ws-estimationnotice.json,file:///work-dir/configs/pdf-service/data-config/ws-applicationsewerage.json,file:///work-dir/configs/pdf-service/data-config/tlcertificate.json"
   format-config-urls: "file:///work-dir/configs/pdf-service/format-config/tradelicense-receipt.json,file:///work-dir/configs/pdf-service/format-config/property-receipt.json,file:///work-dir/configs/pdf-service/format-config/property-bill.json,file:///work-dir/configs/pdf-service/format-config/tradelicense-bill.json,file:///work-dir/configs/pdf-service/format-config/firenoc-receipt.json,file:///work-dir/configs/pdf-service/format-config/pt-receipt.json,file:///work-dir/configs/pdf-service/format-config/tl-receipt.json,file:///work-dir/configs/pdf-service/format-config/consolidatedbill.json,file:///work-dir/configs/pdf-service/format-config/consolidatedreceipt.json,file:///work-dir/configs/pdf-service/format-config/tlapplication.json,file:///work-dir/configs/pdf-service/format-config/passvehicle-certificate.json,file:///work-dir/configs/pdf-service/format-config/ws-consolidatedacknowlegment.json,file:///work-dir/configs/pdf-service/format-config/ws-consolidatedsewerageconnection.json,file:///work-dir/configs/pdf-service/format-config/buildingpermit.json,file:///work-dir/configs/pdf-service/format-config/ptmutationcertificate.json,file:///work-dir/configs/pdf-service/format-config/tlrenewalcertificate.json,file:///work-dir/configs/pdf-service/format-config/bpa-revocation.json,file:///work-dir/configs/pdf-service/format-config/buildingpermit-low.json,file:///work-dir/configs/pdf-service/format-config/misc-receipt.json,file:///work-dir/configs/pdf-service/format-config/ws-applicationwater.json,file:///work-dir/configs/pdf-service/format-config/ws-sanctionletter.json,file:///work-dir/configs/pdf-service/format-config/ws-estimationnotice.json,file:///work-dir/configs/pdf-service/format-config/ws-applicationsewerage.json,file:///work-dir/configs/pdf-service/format-config/tlcertificate.json"
 
@@ -338,11 +338,11 @@ kafka-v2:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-025416a1bfa4d0cd3"
+      - volumeId: "vol-01fe061121fe1d5dd"
         zone: ap-south-1b
-      - volumeId: "vol-061868463f802e2bd"
+      - volumeId: "vol-0a0bf44432853d34d"
         zone: ap-south-1b
-      - volumeId: "vol-00027d5b781b6fd56"
+      - volumeId: "vol-0fef3032548ef5fdd"
         zone: ap-south-1b
   zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
 
@@ -401,11 +401,11 @@ zookeeper-v2:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-01bd71b1872112346"
+      - volumeId: "vol-05f6c2af0ce00ae27"
         zone: ap-south-1b
-      - volumeId: "vol-046febc507c3327d1"
+      - volumeId: "vol-02348e3a25bf6d263"
         zone: ap-south-1b
-      - volumeId: "vol-022ace74c0ba937b8"
+      - volumeId: "vol-0f169bcfb88bbabe3"
         zone: ap-south-1b
 
   ## Zookeeper JVM Heap Option
@@ -470,11 +470,11 @@ elasticsearch-data-v1:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-06eba293a7e7429ce"
+      - volumeId: "vol-0abb9c0d8ff26129d"
         zone: ap-south-1b
-      - volumeId: "vol-07ff32651418fd6de"
+      - volumeId: "vol-05238e39adfd195d0"
         zone: ap-south-1b
-      - volumeId: "vol-088af835d3e83b714"
+      - volumeId: "vol-093fcab1d1bd2c914"
         zone: ap-south-1b
 
   esJavaOpts: "-Xmx1g -Xms1g"
@@ -534,11 +534,11 @@ elasticsearch-master-v1:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-054bbae1eb503b03e"
+      - volumeId: "vol-04af9dbe721344e4a"
         zone: ap-south-1b
-      - volumeId: "vol-0dd5819138165d4f7"
+      - volumeId: "vol-03b8e143c90b84dfa"
         zone: ap-south-1b
-      - volumeId: "vol-0fba9316fb95b8acc"
+      - volumeId: "vol-0b78d0adee54b8d88"
         zone: ap-south-1b
 
   esJavaOpts: "-Xmx448m -Xms448m"
@@ -600,3 +600,7 @@ es-curator:
   jaeger-cleanup-enabled: "true"
   logs-to-retain: "7"
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+egov-workflow-v2:
+  java-args: -Dspring.profiles.active=monitoring
+  logging-level-jdbc: "DEBUG"
+  workflow-statelevel: "true"

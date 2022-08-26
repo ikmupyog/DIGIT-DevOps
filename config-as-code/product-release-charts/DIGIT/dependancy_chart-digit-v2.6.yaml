@@ -44,7 +44,6 @@ modules:
         - egovio/xstate-chatbot:v1.1.1-96b24b0d72-21
         - egovio/egov-user-chatbot:v1.2.6-96b24b0d72-4 
         - egovio/nlp-engine:v1.0.0-fbea6fba-21
-        - egovio/egov-document-uploader:v0.0.1-48a03ad7bb-26
         - egovio/playground:1.0
     - name: business
       dependencies:

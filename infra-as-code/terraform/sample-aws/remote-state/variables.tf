@@ -1,3 +1,3 @@
 variable "bucket_name" {
-  default = "ikm-try-workshop"
+  default = "try-qatest-workshop"
 }
