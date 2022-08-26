@@ -126,7 +126,7 @@ egov-idgen:
 
 egov-notification-sms:
   sms-provider-url: "https://msdgweb.mgov.gov.in/esms/sendsmsrequest"
-  sms.provider.class: "Generic"
+  sms.provider.class: "Console"
   sms.provider.contentType:  "application/x-www-form-urlencoded"
   sms-config-map: "{'User':'$username', 'passwd': '$password', 'sid':'$senderid', 'mobilenumber':'$mobileno', 'message':'$message', 'mtype':'N', 'DR':'N', 'smsservicetype':'singlemsg'}"
   sms-gateway-to-use: "sms provider name" ## Add sms provider name
@@ -149,7 +149,7 @@ chatbot:
   kafka-producer-linger-ms: 5
 
   contact-card-whatsapp-number: "+918744960111" 
-  contact-card-whatsapp-name: "mSeva Punjab"
+  contact-card-whatsapp-name: "mSeva Kerala"
   valuefirst-whatsapp-number: "918744960111"
   valuefirst-notification-assigned-templateid: "194781"
   valuefirst-notification-resolved-templateid: "194783"
@@ -208,7 +208,7 @@ egov-searcher:
       branch: "UAT" ### Branch need to be changed as per your env
 
 egov-custom-consumer:
-  erp-host: "https://mohali-qa.egovernments.org/"
+  erp-host: "https://cochin-qa.egovernments.org/"
 
 digit-ui:
   custom-js-injection: |
@@ -269,12 +269,12 @@ zuul:
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 collection-receipt-voucher-consumer:
-  jalandhar-erp-host: "https://jalandhar-qa.egovernments.org/"
-  mohali-erp-host: "https://mohali-qa.egovernments.org/"
-  nayagaon-erp-host: "https://nayagaon-qa.egovernments.org/"
-  amritsar-erp-host: "https://amritsar-qa.egovernments.org/"
-  kharar-erp-host: "https://kharar-qa.egovernments.org/"
-  zirakpur-erp-host: "https://zirakpur-qa.egovernments.org/"
+  jalandhar-erp-host: "https://thiruvananthapuram-qa.egovernments.org/"
+  mohali-erp-host: "https://cochin-qa.egovernments.org/"
+  nayagaon-erp-host: "https://kannur-qa.egovernments.org/"
+  amritsar-erp-host: "https://kozhikode-qa.egovernments.org/"
+  kharar-erp-host: "https://kollam-qa.egovernments.org/"
+  zirakpur-erp-host: "https://thrissur-qa.egovernments.org/"
 
 finance-collections-voucher-consumer:
   erp-env-name: "qa"

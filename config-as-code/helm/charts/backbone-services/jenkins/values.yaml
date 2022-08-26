@@ -476,7 +476,7 @@ master:
                   cps {
                       script("""library 'ci-libs'
               
-              deployer(repo:'git@github.com:ikmupyog/DIGIT-DevOps.git', branch: 'release', helmDir: 'config-as-code/helm', environment: '{{ $job.name }}')""")
+              deployer(repo:'git@github.com:ikmupyog/DIGIT-DevOps.git', branch: 'release', helmDir: 'config-as-code', environment: '{{ $job.name }}')""")
                       sandbox() 
                     }
                 }

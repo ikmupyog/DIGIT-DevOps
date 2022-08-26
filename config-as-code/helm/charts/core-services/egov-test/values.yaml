@@ -1,0 +1,18 @@
+# Common Labels
+labels:
+  app: "egov-test"
+  group: "core"
+
+# Ingress Configs
+ingress:
+  enabled: true
+  context: "hello"
+
+# Container Configs
+image:
+  repository: "egov-test"
+replicas: "1"
+healthChecks:
+  enabled: true
+  livenessProbePath: "/hello/actuator/health"
+  readinessProbePath: "/hello/actuator/health"
